@@ -19,7 +19,8 @@
     "globals": [
       "React",
       "ReactDOM",
-      "$"
+      "$",
+      "localStorage"
     ]
   },
   "repository": {
