@@ -1,0 +1,33 @@
+{
+  "name": "marmo-grades",
+  "version": "0.0.1",
+  "description": "A grade viewer for CS 136",
+  "main": "lib/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d lib"
+  },
+  "author": "Ben Zhang",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13"
+  },
+  "standard": {
+    "globals": [
+      "React",
+      "ReactDOM",
+      "$"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ben-z/marmo-grades.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ben-z/marmo-grades/issues"
+  },
+  "homepage": "https://github.com/ben-z/marmo-grades#readme"
+}
