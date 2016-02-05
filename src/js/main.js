@@ -72,11 +72,13 @@ ResultItem.propTypes = {
 class App extends React.Component {
   constructor (props) {
     super(props)
+
     this.state = {
       projectList: [],
       user: this.props.user || '',
       results: []
     }
+    console.log(this.props.user, this.state.user);
     this._getProjects = this._getProjects.bind(this)
     this._getResults = this._getResults.bind(this)
     this._updateUser = this._updateUser.bind(this)
@@ -128,6 +130,11 @@ class App extends React.Component {
       this._getResults()
     })
   }
+  componentDidUpdate (prevProps, prevState) {
+    if (typeof Storage !== 'undefined') {
+      localStorage.marmogrades_user = this.state.user
+    }
+  }
   render () {
     let results = this.state.results.sort((a, b) => {
       if (a.project.toLowerCase() > b.project.toLowerCase()) return -1
@@ -141,7 +148,7 @@ class App extends React.Component {
     <div>
       <p>Input your WatIAM username below and click "Update". Your best submission for each project will be displayed.</p>
       <form className='pure-form'>
-        <input type='text' ref='user' />
+        <input type='text' ref='user' defaultValue={this.state.user}/>
         <button onClick={this._updateUser} className='pure-button pure-button-primary'>Update</button>
       </form>
       <br />
@@ -177,6 +184,8 @@ App.propTypes = {
 if (document) {
   let listURL = 'https://www.student.cs.uwaterloo.ca/~cs136/cgi-bin/marmoset-utils/project-list.rkt'
   let resutlURL = 'https://www.student.cs.uwaterloo.ca/~cs136/cgi-bin/marmoset-utils/public-test-results.rkt'
-  window.React = React
-  ReactDOM.render(<App listURL={listURL} resultURL={resutlURL} />, document.getElementById('app'))
+
+  let marmogrades_user = (typeof Storage !== 'undefined' && localStorage.marmogrades_user) ? localStorage.marmogrades_user : null
+
+  ReactDOM.render(<App listURL={listURL} resultURL={resutlURL} user={marmogrades_user}/>, document.getElementById('app'))
 }
