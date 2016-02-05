@@ -78,7 +78,6 @@ class App extends React.Component {
       user: this.props.user || '',
       results: []
     }
-    console.log(this.props.user, this.state.user);
     this._getProjects = this._getProjects.bind(this)
     this._getResults = this._getResults.bind(this)
     this._updateUser = this._updateUser.bind(this)
@@ -99,7 +98,6 @@ class App extends React.Component {
     for (var i = 0; i < that.state.projectList.length; i++) {
       let p = that.state.projectList[i]
       let user = u || that.state.user
-      console.log('user', user)
       let project = p.project
       let url = that.props.resultURL
       that.setState({
